@@ -1,7 +1,9 @@
 const ContactsPage = () => {
     return (
         <div>
-            ContactsPage content
+            <hr/>
+            Contacts Page content
+            <hr/>
         </div>
     );
 };
