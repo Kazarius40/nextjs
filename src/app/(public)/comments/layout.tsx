@@ -2,14 +2,15 @@ import React from "react";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-    title: 'UsersLayout metadata',
+    title: 'CommentsLayout metadata',
 }
 
 type Props = {
     children: React.ReactNode;
 }
 
-const UsersLayout = ({children}: Props) => {
+
+const CommentsLayout = ({children}: Props) => {
     return (
         <>
             {children}
@@ -17,4 +18,4 @@ const UsersLayout = ({children}: Props) => {
     );
 };
 
-export default UsersLayout;
+export default CommentsLayout;
