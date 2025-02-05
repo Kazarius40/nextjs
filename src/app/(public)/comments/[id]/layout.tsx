@@ -2,14 +2,14 @@ import React from "react";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-    title: 'CommentsLayout metadata',
+    title: 'CommentLayout metadata',
 }
 
 type Props = {
     children: React.ReactNode;
 }
 
-const CommentsLayout = ({children}: Props) => {
+const CommentLayout = ({children}: Props) => {
     return (
         <>
             {children}
@@ -17,4 +17,4 @@ const CommentsLayout = ({children}: Props) => {
     );
 };
 
-export default CommentsLayout;
+export default CommentLayout;

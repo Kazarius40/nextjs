@@ -1,5 +1,5 @@
-import Link from "next/link";
 import "./Menu.css";
+import Link from "next/link";
 
 const Menu = () => {
     return (

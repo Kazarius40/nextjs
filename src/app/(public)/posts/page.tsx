@@ -1,8 +1,8 @@
 const PostsPage = () => {
     return (
-        <>
+        <div>
             posts page content
-        </>
+        </div>
     );
 };
 
