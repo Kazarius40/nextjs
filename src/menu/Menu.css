@@ -1,0 +1,11 @@
+.menu-container {
+    border-bottom: 2px solid black;
+}
+
+.menu-container ul {
+    display: flex;
+    gap: 10px;
+    text-decoration: none;
+    list-style: none;
+    color: cornflowerblue;
+}
