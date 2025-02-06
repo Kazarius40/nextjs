@@ -8,8 +8,8 @@ export const UsersComponent = async () => {
     return (
         <div>
             {
-                users.map(user => <div key={user.id}>
-                    <Link href={{pathname: '/users/' + user.id.toString(), query: {...user}}}>{user.id} {user.name}</Link>
+                users.map((user) => <div key={user.id}>
+                    <Link href={{pathname: '/users/' + user.id.toString(), query: {data: JSON.stringify(user)}}}>{user.id} {user.name}</Link>
                 </div>)
             }
         </div>
