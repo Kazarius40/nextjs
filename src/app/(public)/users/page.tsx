@@ -1,8 +1,10 @@
+import {UsersComponent} from "@/components/users/UsersComponent";
+
 const UsersPage = () => {
     return (
         <div>
             <hr/>
-            users page content
+            <UsersComponent/>
             <hr/>
         </div>
     );
