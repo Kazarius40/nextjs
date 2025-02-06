@@ -4,10 +4,13 @@ type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const SubmitPage: FC<Props> = () => {
+const SubmitPage: FC<Props> = async ({searchParams}) => {
+
+    const awaitedSP = await searchParams;
+
     return (
         <div>
-            submit page content
+            submit page content {awaitedSP.name}
         </div>
     )
 };
