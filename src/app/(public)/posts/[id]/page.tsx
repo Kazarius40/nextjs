@@ -4,15 +4,15 @@ type Props = {
     params: { id: string };
 }
 
-export const generateMetadata = ({params}: Props): Metadata => {
-    const {id} = params;
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+    const {id} = await params;
     return {
         title: 'Post page title ' + id,
     }
 }
 
-const PostPage = ({params}: Props) => {
-    const {id} = params;
+const PostPage = async ({params}: Props) => {
+    const {id} = await params;
     return (
         <div>
             post page content {id}

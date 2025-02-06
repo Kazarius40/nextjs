@@ -4,15 +4,15 @@ type Props = {
     params: { id: string };
 }
 
-export const generateMetadata = ({params}: Props): Metadata => {
-    const {id} = params;
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+    const {id} = await params;
     return {
         title: 'Comment page title ' + id,
     }
 }
 
-const CommentPage = ({params}: Props) => {
-    const {id} = params;
+const CommentPage = async ({params}: Props) => {
+    const {id} = await params;
     return (
         <div>
             comment page content {id}
