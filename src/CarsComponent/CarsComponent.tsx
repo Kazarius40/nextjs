@@ -12,7 +12,7 @@ const CarsComponent = async ({item}: CarsProps) => {
             {
                 item.map((car) =>(
                     <div key={car.id}>
-                        {car.id}
+                        {car.id}: {car.brand} {car.price} {car.year}
                     </div>
                 ))
             }
