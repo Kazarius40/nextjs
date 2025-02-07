@@ -6,7 +6,7 @@ export const carValidator = Joi.object({
         .min(1)
         .max(20)
         .messages({
-            'string.pattern.base': 'Не відповідні символи',
+            'string.pattern.base': 'Можуть бути лише українські, російські та латинські літери. Довжина не більше 20',
         }),
     price: Joi.number()
         .min(0)

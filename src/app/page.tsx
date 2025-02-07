@@ -1,37 +1,39 @@
 "use client"
 
-import {useForm} from "react-hook-form";
-import {carValidator} from "@/validators/carValidator";
-import {joiResolver} from "@hookform/resolvers/joi";
-import {ICar} from "@/models/ICar";
-import {createCar} from "@/services/carService";
+import Form from "next/form";
+import {createCar} from "@/server-actions/serverActions";
+import {useState} from "react";
+
+interface IErrors {
+    brand?: string;
+    price?: string;
+    year?: string;
+}
 
 export default function Home() {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<ICar>({
-        mode: 'all',
-        resolver: joiResolver(carValidator)
-    });
+    const [errors, setErrors] = useState<IErrors>({});
 
-    const createHandler = async (data: ICar): Promise<void> => {
-        await createCar(data);
-    }
+    const handleSubmit = async (formData: FormData) => {
+        const result = await createCar(formData);
+        setErrors(result || {});
+    };
 
-  return (
-      <form onSubmit={handleSubmit(createHandler)}>
-          <div>
-              <input type="text" placeholder={'brand'} {...register('brand')}/>
-              <div>{errors.brand?.message}</div>
-          </div>
-          <div>
-              <input type="number" placeholder={'price'} {...register('price')}/>
-              <div>{errors.price?.message}</div>
-          </div>
-          <div>
-              <input type="number" placeholder={'year'} {...register('year')}/>
-              <div>{errors.year?.message}</div>
-          </div>
-          <button>Submit</button>
-      </form>
-  );
+    return (
+        <Form action={handleSubmit}>
+            <div>
+                <input type="text" name="brand" placeholder="brand" />
+                {errors.brand && <p>{errors.brand}</p>}
+            </div>
+            <div>
+                <input type="number" name="price" placeholder="price" />
+                {errors.price && <p>{errors.price}</p>}
+            </div>
+            <div>
+                <input type="number" name="year" placeholder="year" />
+                {errors.year && <p>{errors.year}</p>}
+            </div>
+            <button type="submit">Submit</button>
+        </Form>
+    );
 }
