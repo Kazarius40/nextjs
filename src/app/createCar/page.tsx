@@ -2,7 +2,6 @@
 
 import React, {useState} from "react";
 import {createCar} from "@/server-actions/serverActions";
-import Form from "next/form";
 import Menu from "@/components/menu/Menu";
 
 interface IErrors {
@@ -12,15 +11,14 @@ interface IErrors {
 }
 
 const CreateCarPage = () => {
-    const [formValues, setFormValues] = useState({
-        brand: "",
-        price: "",
-        year: "",
-    });
+    const [formValues, setFormValues] = useState({brand: "", price: "", year: "",});
 
     const [errors, setErrors] = useState<IErrors>({});
 
-    const handleSubmit = async (formData: FormData) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
         const result = await createCar(formData);
         setErrors(result || {});
 
@@ -29,30 +27,46 @@ const CreateCarPage = () => {
         }
     };
 
-    const renderInput = (name: keyof typeof formValues, type: string, placeholder: string) => (
-        <div>
-            <input
-                type={type}
-                name={name}
-                placeholder={placeholder}
-                value={formValues[name]}
-                onChange={(e) =>
-                    setFormValues({...formValues, [name]: e.target.value})
-                }
-            />
-            {errors[name] && <p>{errors[name]}</p>}
-        </div>
-    );
+    const handleChange = ({target: {name, value}}: React.ChangeEvent<HTMLInputElement>) => {
+        setFormValues(prev => ({...prev, [name]: value}));
+    };
 
     return (
         <>
             <Menu/>
-            <Form action={handleSubmit}>
-                {renderInput("brand", "text", "brand")}
-                {renderInput("price", "number", "price")}
-                {renderInput("year", "number", "year")}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <input
+                        type="text"
+                        name="brand"
+                        placeholder="Brand"
+                        value={formValues.brand}
+                        onChange={handleChange}
+                    />
+                    {errors.brand && <p>{errors.brand}</p>}
+                </div>
+                <div>
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        value={formValues.price}
+                        onChange={handleChange}
+                    />
+                    {errors.price && <p>{errors.price}</p>}
+                </div>
+                <div>
+                    <input
+                        type="number"
+                        name="year"
+                        placeholder="Year"
+                        value={formValues.year}
+                        onChange={handleChange}
+                    />
+                    {errors.year && <p>{errors.year}</p>}
+                </div>
                 <button type="submit">Submit</button>
-            </Form>
+            </form>
         </>
     );
 };
