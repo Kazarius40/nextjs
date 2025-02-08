@@ -1,5 +1,3 @@
-"use server";
-
 import {revalidatePath} from "next/cache";
 import {createCarRequest} from "@/services/carService";
 import {ICar} from "@/models/ICar";
