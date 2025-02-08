@@ -5,7 +5,7 @@ import {createCarRequest} from "@/services/carService";
 import {ICar} from "@/models/ICar";
 import {carValidator} from "@/validators/carValidator";
 
-export async function createCar(formData: FormData) {
+export async function createCar(_: unknown, formData: FormData) {
 
     const newCar: ICar = {
         brand: (formData.get('brand') as string),
@@ -23,4 +23,6 @@ export async function createCar(formData: FormData) {
     await createCarRequest(newCar);
 
     revalidatePath("/cars");
+
+    return null;
 }
