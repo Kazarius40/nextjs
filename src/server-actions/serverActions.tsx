@@ -1,4 +1,3 @@
-import {revalidatePath} from "next/cache";
 import {createCarRequest} from "@/services/carService";
 import {ICar} from "@/models/ICar";
 import {carValidator} from "@/validators/carValidator";
@@ -19,8 +18,6 @@ export async function createCar(_: unknown, formData: FormData) {
     }
 
     await createCarRequest(newCar);
-
-    revalidatePath("/cars");
 
     return null;
 }
