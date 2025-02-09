@@ -7,7 +7,9 @@ const axiosInstance = axios.create({
 })
 
 export const getAllCars = async (): Promise<ICar[]> => {
-    const {data} = await axiosInstance.get<ICar[]>('/cars');
+    const {data} = await axiosInstance.get<ICar[]>('/cars', {
+        headers: {'Cache-Control': 'no-store'}
+    });
     return data;
 }
 
