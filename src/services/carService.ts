@@ -1,5 +1,8 @@
+"use server";
+
 import axios from "axios";
 import {ICar} from "@/models/ICar";
+import {revalidatePath} from "next/cache";
 
 const axiosInstance = axios.create({
     baseURL: 'http://185.69.152.209/carsAPI/v1',
@@ -14,3 +17,8 @@ export const getAllCars = async (): Promise<ICar[]> => {
 export const createCar = async (carData: ICar): Promise<void> => {
     await axiosInstance.post("/cars", carData);
 };
+
+export const CreateCarRevalidate = async (data: ICar) => {
+    await createCar(data);
+    revalidatePath("/cars");
+}

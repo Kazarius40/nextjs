@@ -7,17 +7,17 @@ import {ICar} from "@/models/ICar";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {carValidator} from "@/validators/carValidator";
 import {useForm} from "react-hook-form";
-import {createCar} from "@/services/carService";
+import {CreateCarRevalidate} from "@/services/carService";
 
 const CreateCarPage = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<ICar>({
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm<ICar>({
         mode: 'all',
         resolver: joiResolver(carValidator)
     });
 
     const createHandler = async (data: ICar): Promise<void> => {
-        await createCar(data);
+       await CreateCarRevalidate (data);
     }
 
     return (
@@ -25,7 +25,7 @@ const CreateCarPage = () => {
             <Menu/>
             <Form action={() => handleSubmit(createHandler)()}>
                 <div>
-                    <input type="text" placeholder={'brand'} {...register('brand')}/>
+                    <input type="text" placeholder={'brand'}{...register('brand')}/>
                     <div>{errors.brand?.message}</div>
                 </div>
                 <div>
@@ -36,7 +36,7 @@ const CreateCarPage = () => {
                     <input type="number" placeholder={'year'} {...register('year')}/>
                     <div>{errors.year?.message}</div>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={!isValid}>Submit</button>
             </Form>
         </>
     );
