@@ -11,6 +11,6 @@ export const getAllCars = async (): Promise<ICar[]> => {
     return data;
 }
 
-export const createCarRequest = async (carData: ICar): Promise<void> => {
+export const createCar = async (carData: ICar): Promise<void> => {
     await axiosInstance.post("/cars", carData);
 };

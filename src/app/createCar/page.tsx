@@ -1,41 +1,40 @@
 "use client"
 
-import {createCar} from "@/server-actions/serverActions";
 import Menu from "@/components/menu/Menu";
 import Form from "next/form";
-import {useFormState} from "react-dom";
-import React, {useState} from "react";
-
-const initialFormData = {
-    brand: "",
-    price: "",
-    year: "",
-};
+import React from "react";
+import {ICar} from "@/models/ICar";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {carValidator} from "@/validators/carValidator";
+import {useForm} from "react-hook-form";
+import {createCar} from "@/services/carService";
 
 const CreateCarPage = () => {
-    const [formData, setFormData] = useState(initialFormData);
-    const [errors, formAction] = useFormState(createCar, {});
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
+    const {register, handleSubmit, formState: {errors}} = useForm<ICar>({
+        mode: 'all',
+        resolver: joiResolver(carValidator)
+    });
+
+    const createHandler = async (data: ICar): Promise<void> => {
+        await createCar(data);
     }
 
     return (
         <>
             <Menu/>
-            <Form action={formAction}>
+            <Form action={() => handleSubmit(createHandler)()}>
                 <div>
-                    <input type="text" name="brand" placeholder="Brand" value={formData.brand} onChange={handleChange}/>
-                    {errors?.brand && <p>{errors.brand}</p>}
+                    <input type="text" placeholder={'brand'} {...register('brand')}/>
+                    <div>{errors.brand?.message}</div>
                 </div>
                 <div>
-                    <input type="number" name="price" placeholder="Price" value={formData.price}
-                           onChange={handleChange}/>
-                    {errors?.price && <p>{errors.price}</p>}
+                    <input type="number" placeholder={'price'} {...register('price')}/>
+                    <div>{errors.price?.message}</div>
                 </div>
                 <div>
-                    <input type="number" name="year" placeholder="Year" value={formData.year} onChange={handleChange}/>
-                    {errors?.year && <p>{errors.year}</p>}
+                    <input type="number" placeholder={'year'} {...register('year')}/>
+                    <div>{errors.year?.message}</div>
                 </div>
                 <button type="submit">Submit</button>
             </Form>
