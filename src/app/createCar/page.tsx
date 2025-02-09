@@ -17,7 +17,7 @@ const CreateCarPage = () => {
     });
 
     const createHandler = async (data: ICar): Promise<void> => {
-       await CreateCarRevalidate (data);
+        await CreateCarRevalidate(data);
     }
 
     return (
