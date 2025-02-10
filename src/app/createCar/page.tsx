@@ -21,15 +21,15 @@ const CreateCarPage = () => {
             <Menu/>
             <Form action={createCar}>
                 <div>
-                    <input type="text" placeholder={'brand'} {...register('brand')}/>
+                    <input type="text" placeholder={'brand'} {...register('brand')} required/>
                     <div>{errors.brand?.message}</div>
                 </div>
                 <div>
-                    <input type="number" placeholder={'price'} {...register('price')}/>
+                    <input type="number" placeholder={'price'} {...register('price')} required/>
                     <div>{errors.price?.message}</div>
                 </div>
                 <div>
-                    <input type="number" placeholder={'year'} {...register('year')}/>
+                    <input type="number" placeholder={'year'} {...register('year')} required/>
                     <div>{errors.year?.message}</div>
                 </div>
                 <button type="submit" disabled={!isValid}>Submit</button>
