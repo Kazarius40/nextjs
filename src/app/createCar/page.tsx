@@ -21,7 +21,7 @@ const CreateCarPage = () => {
             <Menu/>
             <Form action={() => handleSubmit(createCar)()}>
                 <div>
-                    <input type="text" placeholder={'brand'}{...register('brand')}/>
+                    <input type="text" placeholder={'brand'} {...register('brand')}/>
                     <div>{errors.brand?.message}</div>
                 </div>
                 <div>
