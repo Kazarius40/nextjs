@@ -11,7 +11,7 @@ import {createCar} from "@/services/carService";
 
 const CreateCarPage = () => {
 
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm<ICar>({
+    const {register, formState: {errors, isValid}} = useForm<ICar>({
         mode: 'all',
         resolver: joiResolver(carValidator)
     });
@@ -19,7 +19,7 @@ const CreateCarPage = () => {
     return (
         <>
             <Menu/>
-            <Form action={() => handleSubmit(createCar)()}>
+            <Form action={createCar}>
                 <div>
                     <input type="text" placeholder={'brand'} {...register('brand')}/>
                     <div>{errors.brand?.message}</div>
