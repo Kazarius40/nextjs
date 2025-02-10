@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 import React from "react";
+import Menu from "@/components/menu/Menu";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -14,6 +15,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body>
+        <Menu/>
         {children}
         </body>
         </html>

@@ -1,6 +1,5 @@
 "use client"
 
-import Menu from "@/components/menu/Menu";
 import Form from "next/form";
 import React from "react";
 import {ICar} from "@/models/ICar";
@@ -18,7 +17,6 @@ const CreateCarPage = () => {
 
     return (
         <>
-            <Menu/>
             <Form action={createCar}>
                 <div>
                     <input type="text" placeholder={'brand'} {...register('brand')} required/>
