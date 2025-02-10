@@ -7,7 +7,7 @@ import {ICar} from "@/models/ICar";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {carValidator} from "@/validators/carValidator";
 import {useForm} from "react-hook-form";
-import {CreateCarRevalidate} from "@/services/carService";
+import {createCar} from "@/services/carService";
 
 const CreateCarPage = () => {
 
@@ -17,7 +17,7 @@ const CreateCarPage = () => {
     });
 
     const createHandler = async (data: ICar): Promise<void> => {
-        await CreateCarRevalidate(data);
+        await createCar(data);
     }
 
     return (
