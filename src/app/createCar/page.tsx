@@ -7,7 +7,7 @@ import {ICar} from "@/models/ICar";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {carValidator} from "@/validators/carValidator";
 import {useForm} from "react-hook-form";
-import {createCar} from "@/services/carService";
+import {createCar} from "@/services/car.service";
 
 const CreateCarPage = () => {
 

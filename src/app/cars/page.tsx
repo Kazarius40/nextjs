@@ -1,6 +1,6 @@
 import CarsComponent from "@/components/cars-component/CarsComponent";
-import {getAllCars} from "@/services/carService";
 import Menu from "@/components/menu/Menu";
+import {getAllCars} from "@/services/api";
 
 
 const CarsPage = async () => {
