@@ -16,14 +16,10 @@ const CreateCarPage = () => {
         resolver: joiResolver(carValidator)
     });
 
-    const createHandler = async (data: ICar): Promise<void> => {
-        await createCar(data);
-    }
-
     return (
         <>
             <Menu/>
-            <Form action={() => handleSubmit(createHandler)()}>
+            <Form action={() => handleSubmit(createCar)()}>
                 <div>
                     <input type="text" placeholder={'brand'}{...register('brand')}/>
                     <div>{errors.brand?.message}</div>
